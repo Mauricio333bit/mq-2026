@@ -1,0 +1,39 @@
+/* src/index.css */
+:root {
+  --bg-color: #0a0a0a;
+  --text-color: #ededed;
+  --accent-color: #64ffda;
+  --card-bg: #112240;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Efecto fade in scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efecto Parallax  */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background: radial-gradient(circle, #112240 0%, #0a0a0a 100%);
+  transform: translateZ(-1px) scale(2); 
+}

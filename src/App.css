@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&family=Press+Start+2P&display=swap');
+
+:root {
+  --bg-deep: #030303;
+  --accent: #64ffda;
+  --accent-glow: rgba(100, 255, 218, 0.15);
+  --white: #f8f9fa;
+  --slate: #a8b2d1;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --card-bg-retro: rgba(17, 34, 64, 0.6);
+}
+
+* { 
+  box-sizing: border-box; 
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  line-height: 1.6;
+  overflow-x: hidden; /* Evita scroll horizontal en móviles */
+}
+.about-text {
+  font-size: 1.1rem;
+  color: var(--slate);
+  max-width: 800px;
+  line-height: 1.8;
+  white-space: pre-line; /* ESTO HABILITA LOS SALTOS DE LÍNEA */
+  text-align: center;
+}
+/* --- FONDO --- */
+.parallax-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: 
+    radial-gradient(circle at 20% 20%, var(--accent-glow) 0%, transparent 30%),
+    radial-gradient(circle at 80% 80%, var(--accent-glow) 0%, transparent 30%);
+  z-index: -1;
+  filter: blur(60px);
+}
+
+/* --- ESTRUCTURA GLOBAL CENTRADA --- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrado horizontal de hijos */
+}
+
+section {
+  padding: 80px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra títulos y grids */
+  text-align: center;
+}
+
+/* --- ANIMACIONES --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- HERO & PIXEL TITLE --- */
+.hero {
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.pixel-header {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pixel-header canvas {
+  image-rendering: pixelated;
+  max-width: 100%;
+  transition: opacity 0.5s ease;
+}
+
+.final-pixel-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(1.4rem, 4.5vw, 3rem); /* Tamaño dinámico según pantalla */
+  color: var(--accent);
+  position: absolute;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  image-rendering: pixelated;
+  text-shadow: 4px 4px 0px #112240;
+  animation: pixelFocus 0.8s ease-out forwards;
+  width: 100%;
+}
+
+@keyframes pixelFocus {
+  0% { filter: blur(12px); opacity: 0; transform: scale(1.1); }
+  100% { filter: blur(0); opacity: 1; transform: scale(1); }
+}
+
+/* --- GRID DE CARDS RESPONSIVE --- */
+.grid-cards {
+  display: grid;
+  /* Crea columnas automáticas, mínimo 300px, máximo lo que de el espacio */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 25px;
+  width: 100%;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+/* Para que la card de "About" o cards individuales se vean bien */
+.glass-card {
+  background: var(--card-bg-retro);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 7px; /* Estilo técnico */
+  padding: 1rem;
+  text-align: center;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+.glass-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(100, 255, 218, 0.2);
+}
+
+.glass-card h3 { color: var(--accent); margin: 0 0 10px 0; font-size: 1.2rem; }
+.glass-card .date { font-size: 0.8rem; color: var(--slate); font-weight: 800; }
+
+/* --- SECCIÓN SKILLS --- */
+.skills-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.icons-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Iconos siempre al centro */
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+  transition: 0.3s;
+}
+
+.icon-item svg { font-size: 2.5rem; margin-bottom: 8px; color: var(--slate); }
+.icon-item:hover svg { color: var(--accent); transform: scale(1.1); }
+.icon-item span { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; }
+
+/* --- FOOTER --- */
+.footer {
+  width: 100%;
+  padding: 80px 0;
+  border-top: 1px solid var(--glass-border);
+}
+
+.btn-contact {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 15px 30px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  transition: 0.3s;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.btn-contact:hover {
+  background: var(--accent-glow);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* --- AJUSTES MÓVILES EXTRAS --- */
+@media (max-width: 600px) {
+  section { padding: 50px 0; }
+  
+  .pixel-header { height: 120px; }
+  
+  .final-pixel-text {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr; /* Una sola columna en teléfonos muy chicos */
+  }
+
+  .glass-card { padding: 1.5rem; }
+}
+/* --- BOTÓN DESCARGAR CV (Llamativo + Skeleton Effect) --- */
+.btn-download {
+  position: relative;
+  display: inline-block;
+  padding: 15px 35px;
+  margin-top: 30px;
+  background: linear-gradient(45deg, var(--accent), #45c2a4);
+  color: var(--bg-deep);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.btn-download:hover {
+  background: transparent; /* Efecto Skeleton al vaciar el fondo */
+  color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: translateY(-3px);
+}
+
+/* Simulación de Skeleton en el borde/fondo durante el hover */
+.btn-download::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.btn-download:hover::after {
+  left: 100%;
+  transition: 0.6s ease-in-out;
+}
+
+/* Corrección de centrado del About en Desktop */
+.about-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto; /* Centrado horizontal */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido interno (p y h1) */
+  justify-content: center;
+  text-align: center;
+}
+
+/* Ajuste específico para que la glass-card del about esté centrada */
+.hero .glass-card {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Fondo de Pixeles Animados */
+.parallax-bg::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: 
+    radial-gradient(var(--accent) 1px, transparent 1px),
+    radial-gradient(var(--accent) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.05;
+  animation: pixelDrift 20s linear infinite;
+}
+
+@keyframes pixelDrift {
+  from { background-position: 0 0, 20px 20px; }
+  to { background-position: 40px 80px, 60px 100px; }
+}
+
+/* Efecto de Píxeles que aparecen y desaparecen */
+.pixel-glitch-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+.icons-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  perspective: 1000px; /* Para darle profundidad */
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(-500px) rotate(10deg); /* Empiezan arriba como bloques */
+  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+}
+
+/* Cuando la sección se hace visible, los bloques caen */
+.reveal.visible .icon-item {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* Delay secuencial para que caigan uno tras otro como en el Tetris */
+.icon-item:nth-child(1) { transition-delay: 0.1s; }
+.icon-item:nth-child(2) { transition-delay: 0.2s; }
+.icon-item:nth-child(3) { transition-delay: 0.3s; }
+.icon-item:nth-child(4) { transition-delay: 0.4s; }
+.icon-item:nth-child(5) { transition-delay: 0.5s; }
+.icon-item:nth-child(n+6) { transition-delay: 0.6s; }
+/* --- SLIDER DE CERTIFICADOS --- */
+.certifications-container {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.slider-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.cert-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* Habilita el scroll horizontal */
+  padding: 20px 10px;
+  scroll-snap-type: x mandatory; /* Efecto de imán al deslizar */
+  scrollbar-width: none; /* Oculta scrollbar en Firefox */
+}
+
+.cert-slider::-webkit-scrollbar {
+  display: none; /* Oculta scrollbar en Chrome/Safari */
+}
+
+.cert-card {
+  min-width: 250px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 20px;
+  border-radius: 8px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: scale(1.05);
+  border-color: var(--accent);
+}
+
+.cert-icon {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.slider-hint {
+  font-size: 0.8rem;
+  color: var(--slate);
+  margin-top: 10px;
+  opacity: 0.6;
+}
+
+
+.honor-card {
+  border-left: 4px solid #ffd700 !important; /* Dorado */
+}
+
+.honor-text {
+  color: #ffd700;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .cert-card {
+    min-width: 80%; /* En móvil se ve casi toda la card */
+  }
+}

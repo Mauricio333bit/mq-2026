@@ -16,9 +16,10 @@ import {
   SiFigma,
   SiPostman,
 } from "react-icons/si";
-import { FaHtml5, FaCss3Alt, FaJava, FaGitAlt } from "react-icons/fa";
+import { FaHtml5, FaCss3Alt, FaJava, FaGitAlt, FaGithub } from "react-icons/fa";
 import PixelTitle from "./components/PixelTitle";
 import CertificateModal from "./components/CertificateModal";
+import { LiaLinkedin } from "react-icons/lia";
 
 const iconMap = {
   React: <SiReact />,
@@ -90,13 +91,54 @@ function App() {
             <div className="glass-card">
               <p className="about-text">{profile.about}</p>
             </div>
-            <a
-              href="/Quiroga_Mauricio_DEV_cv.pdf"
-              download="CV_Mauricio_Quiroga.pdf"
-              className="btn-download"
-            >
-              DESCARGAR CV
-            </a>
+            {/* <div className="call-to-action">
+              <a
+                href="/Quiroga_Mauricio_DEV_cv.pdf"
+                download="CV_Mauricio_Quiroga.pdf"
+                className="btn-perfil"
+              >
+                <LiaLinkedin size={30}></LiaLinkedin>
+              </a>
+              <a
+                href="/Quiroga_Mauricio_DEV_cv.pdf"
+                download="CV_Mauricio_Quiroga.pdf"
+                className="btn-download"
+              >
+                DESCARGAR CV
+              </a>
+              <a
+                href="/Quiroga_Mauricio_DEV_cv.pdf"
+                download="CV_Mauricio_Quiroga.pdf"
+                className="btn-perfil"
+              >
+                <FaGithub size={30} />
+              </a>
+            </div> */}
+            <div className="call-to-action">
+              <a
+                href="https://linkedin.com/in/mauricio-quiroga333"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-perfil"
+              >
+                <LiaLinkedin size={30} />
+              </a>
+              <a
+                href="/Quiroga_Mauricio_DEV_cv.pdf"
+                download="CV_Mauricio_Quiroga.pdf"
+                className="btn-download"
+              >
+                DESCARGAR CV
+              </a>
+              <a
+                href="https://github.com/Mauricio333bit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-perfil"
+              >
+                <FaGithub size={30} />
+              </a>
+            </div>
           </div>
         </section>
         {/* EXPERIENCE */}

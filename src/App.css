@@ -76,6 +76,7 @@ section {
 
 /* --- HERO & PIXEL TITLE --- */
 .hero {
+  padding: 0px;
   min-height: 100vh;
   justify-content: center;
 }
@@ -88,6 +89,7 @@ section {
   justify-content: center;
   align-items: center;
 }
+
 
 .pixel-header canvas {
   image-rendering: pixelated;
@@ -231,7 +233,7 @@ section {
 @media (max-width: 600px) {
   section { padding: 50px 0; }
   
-  .pixel-header { height: 120px; }
+  .pixel-header { height: 4.5rem; }
   
   .final-pixel-text {
     font-size: 1.2rem;
@@ -263,7 +265,7 @@ section {
   box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
 }
 
-.btn-download:hover {
+.btn-download:hover,.btn-perfil:hover {
   background: transparent; /* Efecto Skeleton al vaciar el fondo */
   color: var(--accent);
   box-shadow: 0 0 20px var(--accent-glow);
@@ -628,4 +630,49 @@ body:has(.modal-overlay) {
 .company-link:hover {
   opacity: 0.75;
   text-decoration: underline;
+}
+.call-to-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .call-to-action {
+    flex-direction: column;
+  }
+
+  /* En mobile, el CV sube al tope */
+  .btn-download {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+.btn-perfil{
+   width: 100%;
+    text-align: center;
+}
+  .glass-card {
+    padding: 16px;
+  }
+}
+.btn-perfil{
+  
+  position: relative;
+  display: inline-block;
+  padding: .5rem;
+  margin-top: 30px;
+  background: linear-gradient(45deg, var(--accent), #45c2a4);
+  color: var(--bg-deep);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
 }

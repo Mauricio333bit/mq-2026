@@ -1,7 +1,7 @@
 export const profile = {
   name: "Mauricio Quiroga",
   role: "Full Stack Developer",
-  about: `¡Hola!Soy Técnico Superior en Desarrollo de Software. Con +2 años de experiencia. Ademas he complementado mi formación con certificaciones en Oracle y la agencia Codo a Codo.
+  about: `Técnico Superior en Desarrollo de Software con +2 años de experiencia construyendo aplicaciones web. He trabajado en entornos reales de producción con React, Node.js, PHP y PostgreSQL, y complementé mi formación con certificaciones en Oracle y Codo a Codo.
   Para mí, la programación es una forma de arte: cada línea de código es una oportunidad para expresar creatividad. Disfruto el desafío de resolver problemas complejos, encontrando siempre soluciones ingeniosas y eficientes.`,
   contact: {
     email: "mauricioquirogadev@gmail.com",

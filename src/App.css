@@ -181,6 +181,8 @@ section {
 }
 
 .btn-contact {
+  position: relative; /* Necesario para el destello */
+  overflow: hidden;   /* Para que el brillo no se salga del botón */
   border: 2px solid var(--accent);
   color: var(--accent);
   padding: 15px 30px;
@@ -190,8 +192,36 @@ section {
   transition: 0.3s;
   display: inline-block;
   margin-top: 20px;
+  background: rgba(100, 255, 218, 0.05); /* Un fondo sutil para el estado base */
 }
 
+/* El destello "Skeleton" constante */
+.btn-contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%; /* Empieza fuera a la izquierda */
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(100, 255, 218, 0.2), /* El color del brillo */
+    transparent
+  );
+  transform: skewX(-20deg); /* Inclinación artística */
+  animation: constant-shimmer 3s infinite; /* Movimiento perpetuo */
+}
+
+@keyframes constant-shimmer {
+  0% { left: -150%; }
+  30% { left: 150%; } /* Pasa rápido */
+  100% { left: 150%; } /* Pausa larga antes de volver a empezar */
+}
+
+.btn-contact:hover::before {
+  animation: constant-shimmer 1s infinite;
+}
 .btn-contact:hover {
   background: var(--accent-glow);
   box-shadow: 0 0 15px var(--accent-glow);
@@ -275,7 +305,9 @@ section {
   text-align: center;
 }
 
-/* Fondo de Pixeles Animados */
+/* --- EFECTO DE PÍXELES ANIMADOS EN BACKGROUND --- */
+
+/* Fondo de grid de píxeles sutiles que se desplazan */
 .parallax-bg::before {
   content: "";
   position: absolute;
@@ -295,14 +327,108 @@ section {
   to { background-position: 40px 80px, 60px 100px; }
 }
 
-/* Efecto de Píxeles que aparecen y desaparecen */
+/* Capa de píxeles individuales que aparecen y desaparecen con efecto glitch */
 .pixel-glitch-bg {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
 }
+
+/* Partículas de píxeles individuales */
+.pixel-particle {
+  position: absolute;
+  background: var(--accent);
+  opacity: 0;
+  animation: pixelBlink 4s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--accent);
+  image-rendering: pixelated;
+  border-radius: 1px; /* Píxeles más definidos */
+}
+
+/* Animación de aparición/desaparición con efecto glitch retro */
+@keyframes pixelBlink {
+  0%, 100% { 
+    opacity: 0; 
+    transform: scale(0) rotate(0deg);
+  }
+  10% { 
+    opacity: 0.8; 
+    transform: scale(1.2) rotate(90deg);
+  }
+  20% { 
+    opacity: 0.4;
+    transform: scale(0.8) rotate(180deg);
+  }
+  30% { 
+    opacity: 0.9;
+    transform: scale(1) rotate(270deg);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(1.1) rotate(360deg);
+  }
+  70% { 
+    opacity: 0.3;
+    transform: scale(0.9) rotate(450deg);
+  }
+  85% { 
+    opacity: 0.7;
+    transform: scale(1) rotate(540deg);
+  }
+}
+
+/* Variaciones de color para crear efecto más dinámico */
+.pixel-particle:nth-child(3n) {
+  background: #8892b0;
+  box-shadow: 0 0 6px #8892b0;
+}
+
+.pixel-particle:nth-child(5n) {
+  background: #45c2a4;
+  box-shadow: 0 0 10px #45c2a4;
+  animation-duration: 5s;
+}
+
+.pixel-particle:nth-child(7n) {
+  animation-duration: 3s;
+  filter: hue-rotate(30deg);
+}
+
+.pixel-particle:nth-child(11n) {
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+/* Efecto adicional: algunos píxeles hacen un "scan" horizontal */
+.pixel-particle:nth-child(4n) {
+  animation: pixelScan 8s linear infinite;
+}
+
+@keyframes pixelScan {
+  0% { 
+    opacity: 0;
+    left: 0;
+  }
+  5% {
+    opacity: 0.5;
+  }
+  50% { 
+    opacity: 0.8;
+    left: 100%;
+  }
+  51% {
+    left: 0;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 0;
+  }
+}
+
 .icons-flex {
   display: flex;
   flex-wrap: wrap;
@@ -407,4 +533,95 @@ section {
   .cert-card {
     min-width: 80%; /* En móvil se ve casi toda la card */
   }
+}
+/* --- MODAL STYLES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: var(--bg-deep);
+  border: 2px solid var(--accent);
+  width: 100%;
+  max-width: 900px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.modal-header {
+  padding: 15px;
+  background: var(--card-bg-retro);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.modal-header h3 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: var(--accent);
+  margin: 0;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: var(--slate);
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+}
+
+.modal-close:hover { color: var(--accent); }
+
+.modal-body {
+  flex-grow: 1;
+  background: white; /* El fondo del PDF suele ser blanco */
+}
+
+.modal-body iframe {
+  border: none;
+}
+
+/* Evitar scroll del body cuando el modal está abierto */
+body:has(.modal-overlay) {
+  overflow: hidden;
+}
+.btn-view-cert{
+  background: #000;
+  border: 1px solid var(--accent);
+  border-radius: 6%;
+  color: var(--accent);
+  padding: 15px 30px;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  transition: 0.3s;
+  display: inline-block;
+  margin-top: 20px;
+}
+.btn-view-cert:hover{
+  background: #191919;
+  cursor: pointer;
+}
+.company-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.company-link:hover {
+  opacity: 0.75;
+  text-decoration: underline;
 }

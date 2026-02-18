@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  
+  <g fill="#39e6c3">
+    
+    <!-- M -->
+    <rect x="6"  y="14" width="6" height="36"/>
+    <rect x="12" y="14" width="6" height="6"/>
+    <rect x="18" y="20" width="6" height="6"/>
+    <rect x="24" y="14" width="6" height="6"/>
+    <rect x="30" y="14" width="6" height="36"/>
+
+    <!-- Q -->
+    <rect x="38" y="14" width="18" height="6"/>
+    <rect x="38" y="14" width="6" height="30"/>
+    <rect x="50" y="14" width="6" height="30"/>
+    <rect x="38" y="38" width="18" height="6"/>
+    <rect x="46" y="32" width="6" height="6"/>
+
+  </g>
+
+</svg>

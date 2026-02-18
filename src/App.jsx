@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { profile } from "./config";
 import "./App.css";
 import {
@@ -14,9 +14,11 @@ import {
   SiPhp,
   SiBootstrap,
   SiFigma,
+  SiPostman,
 } from "react-icons/si";
 import { FaHtml5, FaCss3Alt, FaJava, FaGitAlt } from "react-icons/fa";
 import PixelTitle from "./components/PixelTitle";
+import CertificateModal from "./components/CertificateModal";
 
 const iconMap = {
   React: <SiReact />,
@@ -33,6 +35,7 @@ const iconMap = {
   PostgreSQL: <SiPostgresql />,
   Git: <FaGitAlt />,
   Docker: <SiDocker />,
+  Postman: <SiPostman />,
   Figma: <SiFigma />,
 };
 
@@ -56,7 +59,7 @@ function App() {
 
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
   }, []);
-
+  const [selectedCert, setSelectedCert] = useState(null);
   return (
     <div className="portfolio">
       {/* CAPA DE PÍXELES FANTASMA */}
@@ -104,7 +107,20 @@ function App() {
               <div key={i} className="glass-card reveal">
                 <span className="date">{exp.date}</span>
                 <h3>{exp.role}</h3>
-                <h4>{exp.company}</h4>
+                <h4>
+                  {exp.url ? (
+                    <a
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="company-link"
+                    >
+                      {exp.company}
+                    </a>
+                  ) : (
+                    exp.company
+                  )}
+                </h4>
                 <p style={{ color: "var(--slate)", fontSize: "0.9rem" }}>
                   {exp.description}
                 </p>
@@ -123,7 +139,7 @@ function App() {
                 <div className="icons-flex">
                   {techs.map((tech) => (
                     <div key={tech} className="icon-item" title={tech}>
-                      {iconMap[tech] || iconMap["JavaScript"]}
+                      {iconMap[tech]}
                       <span>{tech}</span>
                     </div>
                   ))}
@@ -161,17 +177,29 @@ function App() {
             <div className="cert-slider">
               {profile.certifications.map((cert, i) => (
                 <div key={i} className="cert-card">
-                  <div className="cert-icon">🏆</div>
-                  <p>{cert}</p>
+                  <div className="cert-icon">📜</div>
+                  <h4>{cert.title}</h4>
+                  <button
+                    className="btn-view-cert"
+                    onClick={() => setSelectedCert(cert)} // Setea el cert para abrir modal
+                  >
+                    VER CREDENCIAL
+                  </button>
                 </div>
               ))}
             </div>
+            <CertificateModal
+              isOpen={!!selectedCert}
+              onClose={() => setSelectedCert(null)}
+              certPath={selectedCert?.path}
+              certTitle={selectedCert?.title}
+            />
             <p className="slider-hint">Desliza para ver más →</p>
           </div>
         </section>
 
         <footer className="footer reveal">
-          <h2>¿Te interesó mi perfil?</h2>
+          <h2>¿Trabajemos juntos?</h2>
           <p>Actualmente estoy abierto a nuevos desafíos, charlemos!</p>
           <a href={`mailto:${profile.contact.email}`} className="btn-contact">
             Enviar Mensaje

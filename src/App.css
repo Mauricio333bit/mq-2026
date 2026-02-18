@@ -21,14 +21,14 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   line-height: 1.6;
-  overflow-x: hidden; /* Evita scroll horizontal en móviles */
+  overflow-x: hidden;
 }
 .about-text {
   font-size: 1.1rem;
   color: var(--slate);
   max-width: 800px;
   line-height: 1.8;
-  white-space: pre-line; /* ESTO HABILITA LOS SALTOS DE LÍNEA */
+  white-space: pre-line;
   text-align: center;
 }
 /* --- FONDO --- */
@@ -50,7 +50,7 @@ body {
   padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centrado horizontal de hijos */
+  align-items: center; 
 }
 
 section {
@@ -58,7 +58,7 @@ section {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra títulos y grids */
+  align-items: center; 
   text-align: center;
 }
 
@@ -99,7 +99,7 @@ section {
 
 .final-pixel-text {
   font-family: 'Press Start 2P', cursive;
-  font-size: clamp(1.4rem, 4.5vw, 3rem); /* Tamaño dinámico según pantalla */
+  font-size: clamp(1.4rem, 4.5vw, 3rem); 
   color: var(--accent);
   position: absolute;
   margin: 0;
@@ -119,7 +119,6 @@ section {
 /* --- GRID DE CARDS RESPONSIVE --- */
 .grid-cards {
   display: grid;
-  /* Crea columnas automáticas, mínimo 300px, máximo lo que de el espacio */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
   gap: 25px;
   width: 100%;
@@ -127,12 +126,11 @@ section {
   justify-content: center;
 }
 
-/* Para que la card de "About" o cards individuales se vean bien */
 .glass-card {
   background: var(--card-bg-retro);
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
-  border-radius: 7px; /* Estilo técnico */
+  border-radius: 7px; 
   padding: 1rem;
   text-align: center;
   transition: 0.3s ease;
@@ -160,7 +158,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Iconos siempre al centro */
+  justify-content: center; 
 }
 
 .icon-item {
@@ -194,7 +192,7 @@ section {
   transition: 0.3s;
   display: inline-block;
   margin-top: 20px;
-  background: rgba(100, 255, 218, 0.05); /* Un fondo sutil para el estado base */
+  background: rgba(100, 255, 218, 0.05);
 }
 
 /* El destello "Skeleton" constante */
@@ -202,7 +200,7 @@ section {
   content: "";
   position: absolute;
   top: 0;
-  left: -150%; /* Empieza fuera a la izquierda */
+  left: -150%; 
   width: 50%;
   height: 100%;
   background: linear-gradient(
@@ -211,14 +209,14 @@ section {
     rgba(100, 255, 218, 0.2), /* El color del brillo */
     transparent
   );
-  transform: skewX(-20deg); /* Inclinación artística */
+  transform: skewX(-20deg); /* Inclinación */
   animation: constant-shimmer 3s infinite; /* Movimiento perpetuo */
 }
 
 @keyframes constant-shimmer {
   0% { left: -150%; }
-  30% { left: 150%; } /* Pasa rápido */
-  100% { left: 150%; } /* Pausa larga antes de volver a empezar */
+  30% { left: 150%; } 
+  100% { left: 150%; } 
 }
 
 .btn-contact:hover::before {
@@ -292,10 +290,10 @@ section {
 .about-container {
   width: 100%;
   max-width: 800px;
-  margin: 0 auto; /* Centrado horizontal */
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el contenido interno (p y h1) */
+  align-items: center;
   justify-content: center;
   text-align: center;
 }
@@ -521,7 +519,7 @@ section {
 
 
 .honor-card {
-  border-left: 4px solid #ffd700 !important; /* Dorado */
+  border-left: 4px solid #ffd700 !important;
 }
 
 .honor-text {
@@ -555,13 +553,42 @@ section {
   border: 2px solid var(--accent);
   width: 100%;
   max-width: 900px;
-  height: 100%;
+  max-height: 90vh;       
+  height: 90vh;
   display: flex;
   flex-direction: column;
   position: relative;
   box-shadow: 0 0 30px var(--accent-glow);
 }
 
+.modal-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;       
+  min-height: 0;     
+}
+
+.modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    
+    padding: 10px;       
+  }
+
+  .modal-content {
+    height: 42vh;         
+    max-height: 85vh;
+  }
+
+  .modal-header h3 {
+    font-size: 0.5rem;    
+  }
+}
 .modal-header {
   padding: 15px;
   background: var(--card-bg-retro);
@@ -588,20 +615,6 @@ section {
 
 .modal-close:hover { color: var(--accent); }
 
-.modal-body {
- 
-  
-  flex: 1;
-  display: flex;
-}
-
-.modal-body iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* Evitar scroll del body cuando el modal está abierto */
 body:has(.modal-overlay) {
   overflow: hidden;
 }

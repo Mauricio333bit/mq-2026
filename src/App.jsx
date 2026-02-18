@@ -200,7 +200,7 @@ function App() {
 
         <footer className="footer reveal">
           <h2>¿Trabajemos juntos?</h2>
-          <p>Actualmente estoy abierto a nuevos desafíos, charlemos!</p>
+          <p>Actualmente estoy abierto a nuevos desafíos!</p>
           <a href={`mailto:${profile.contact.email}`} className="btn-contact">
             Enviar Mensaje
           </a>

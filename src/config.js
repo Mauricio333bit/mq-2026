@@ -19,7 +19,7 @@ export const profile = {
     },
     {
       company: "Syncro Systems",
-      url: "https://visualmedica.com.ar",
+      
       role: "Full Stack Developer",
       date: "Marzo 2024 - Diciembre 2024",
       description: "Desarrollo de múltiples sitios web y sistemas internos con React, Tailwind y Bootstrap, aplicando diseño responsive y mejoras en métricas de carga y rendimiento. Implementación de APIs REST con Node.js para autenticación de usuarios y gestión de datos. Trabajo colaborativo con el equipo backend para integración de servicios y deployment en producción."

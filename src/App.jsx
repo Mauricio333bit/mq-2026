@@ -65,6 +65,7 @@ function App() {
   return (
     <div className="portfolio">
       {/* CAPA DE PÍXELES FANTASMA */}
+      {isMobile &&
       <div className="pixel-glitch-bg">
         {backgroundPixels.map((p) => (
           <div
@@ -80,6 +81,9 @@ function App() {
           />
         ))}
       </div>
+      }
+
+      
 
       <div className="parallax-bg"></div>
 

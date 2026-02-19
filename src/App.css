@@ -691,32 +691,65 @@ body:has(.modal-overlay) {
 }
 @media (max-width: 768px) {
 
-  /* blurs costosos para mobile */
+  .parallax-bg {
+    filter: none;
+    background: radial-gradient(circle at 50% 30%, var(--accent-glow) 0%, transparent 60%);
+    animation: none;
+  }
+
+  .parallax-bg::before {
+    display: none; 
+  }
   .glass-card {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
 
-  .parallax-bg {
-    filter: blur(30px); /* La mitad */
-  }
-
- 
   .icon-item {
-    transform: translateX(-60px) rotate(0deg); 
-    transition: all 0.5s ease;                 
+    opacity: 0;
+    transform: translateY(20px); /* Solo vertical, nada de X ni rotate */
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
-  .pixel-particle:nth-child(4n) {
-    animation: pixelBlink 4s ease-in-out infinite;
-  }
-
-
-  .pixel-particle:nth-child(n+16) {
-    display: none;
+  .reveal.visible .icon-item {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .reveal {
-    transition: all 0.5s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .glass-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .cert-card:hover {
+    transform: none;
+  }
+
+  .modal-overlay {
+    backdrop-filter: none;
+    padding: 10px;
+  }
+
+  .modal-content {
+    height: 85vh;
+    max-height: 85vh;
+  }
+
+  .modal-header h3 {
+    font-size: 0.5rem;
+  }
+
+  .btn-contact::before {
+    display: none;
+  }
+
+  section { padding: 50px 0; }
+
+  .grid-cards {
+    grid-template-columns: 1fr;
   }
 }

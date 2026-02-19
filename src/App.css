@@ -689,3 +689,34 @@ body:has(.modal-overlay) {
   z-index: 1;
   box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
 }
+@media (max-width: 768px) {
+
+  /* blurs costosos para mobile */
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .parallax-bg {
+    filter: blur(30px); /* La mitad */
+  }
+
+ 
+  .icon-item {
+    transform: translateX(-60px) rotate(0deg); 
+    transition: all 0.5s ease;                 
+  }
+
+  .pixel-particle:nth-child(4n) {
+    animation: pixelBlink 4s ease-in-out infinite;
+  }
+
+
+  .pixel-particle:nth-child(n+16) {
+    display: none;
+  }
+
+  .reveal {
+    transition: all 0.5s ease;
+  }
+}

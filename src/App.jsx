@@ -40,7 +40,8 @@ const iconMap = {
   Figma: <SiFigma />,
 };
 
-const backgroundPixels = Array.from({ length: 40 }).map((_, i) => ({
+const isMobile = window.innerWidth <= 768;
+const backgroundPixels = Array.from({ length: isMobile ? 15 : 40 }).map((_, i) => ({
   id: i,
   left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
